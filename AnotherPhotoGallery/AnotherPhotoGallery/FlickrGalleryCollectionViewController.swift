@@ -8,9 +8,10 @@
 
 import UIKit
 
-class FlickrPhotosCollectionViewController: UICollectionViewController {
+class FlickrGalleryCollectionViewController: UICollectionViewController {
     
     private let reuseIdentifier = "FlickrCell"
+    private let detailsSegueIdentifier = "ShowDetails"
     
     private var results = [FlickrResults]()
     private let flickr = Flickr()
@@ -67,13 +68,32 @@ class FlickrPhotosCollectionViewController: UICollectionViewController {
         activityIndicator.removeFromSuperview()
     }
     
-    @IBAction func appendPhotos(sender: UIButton) {
+    @IBAction func appendMorePhotos(sender: UIButton) {
         displayPhotos()
+    }
+    
+    @IBAction func unwindToGalery(sender: UIStoryboardSegue) {
+    }
+    
+    // MARK: - Navigation
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "ShowDetail" {
+            let navigation = segue.destinationViewController as! UINavigationController
+            let photoDetailViewController = navigation.viewControllers.first as! FlickrPhotoDetailsViewController
+            
+            // Get the cell that generated this segue.
+            if let selectedImageCell = sender as? FlickrGalleryCollectionViewCell {
+                let indexPath = collectionView!.indexPathForCell(selectedImageCell)!
+                let selectedPhoto = photoForIndexPath(indexPath)
+                photoDetailViewController.photoData = selectedPhoto
+            }
+        }
     }
     
 }
 
-extension FlickrPhotosCollectionViewController {
+extension FlickrGalleryCollectionViewController {
     
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return results.count
@@ -92,7 +112,7 @@ extension FlickrPhotosCollectionViewController {
     }
 }
 
-extension FlickrPhotosCollectionViewController : UICollectionViewDelegateFlowLayout {
+extension FlickrGalleryCollectionViewController : UICollectionViewDelegateFlowLayout {
     func collectionView(collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
