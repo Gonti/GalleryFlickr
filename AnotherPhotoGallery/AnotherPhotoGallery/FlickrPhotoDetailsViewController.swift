@@ -12,6 +12,9 @@ import UIKit
 
 class FlickrPhotoDetailsViewController: UIViewController {
     
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
+    @IBOutlet weak var saveButton: UIBarButtonItem!
+
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var autorLabel: UILabel!
@@ -46,4 +49,22 @@ class FlickrPhotoDetailsViewController: UIViewController {
         }
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if  sender === cancelButton {
+            return
+        }
+        
+        if sender === saveButton  {
+            guard let image = photoData?.thumbnail else {
+                return
+            }
+            
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+                UIImageWriteToSavedPhotosAlbum(image, segue.destinationViewController, "image:didFinishSavingWithError:contextInfo:", nil)
+            }
+            
+        }
+        
+    }
+
 }

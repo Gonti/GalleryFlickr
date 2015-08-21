@@ -74,6 +74,21 @@ class FlickrGalleryCollectionViewController: UICollectionViewController {
         activityIndicator.removeFromSuperview()
     }
     
+    func image(image: UIImage?, didFinishSavingWithError error: NSErrorPointer, contextInfo:UnsafePointer<Void>) {
+        let alertController = UIAlertController(title: "Alert", message: "", preferredStyle: .Alert)
+        if error == nil {
+            alertController.message = "Image was sucessfuly saved in photo gallery."
+        }
+        else {
+            alertController.message = "Image cannot be saved."
+            print(error)
+        }
+
+        let cancelAction = UIAlertAction(title: "OK", style: .Cancel) { (action) in }
+        alertController.addAction(cancelAction)
+        self.presentViewController(alertController, animated: true) { }
+    }
+    
     @IBAction func appendMorePhotos(sender: UIBarButtonItem) {
         displayPhotos()
     }

@@ -251,12 +251,19 @@
                                 <segue destination="f2I-AT-uQU" kind="unwind" unwindAction="unwindToGalery:" id="Y8D-xd-Msn"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="m94-bI-sik">
+                            <connections>
+                                <segue destination="f2I-AT-uQU" kind="unwind" unwindAction="unwindToGalery:" id="5l6-5w-0Gq"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="autorIdLabel" destination="TJq-gr-0po" id="yw9-39-IkJ"/>
                         <outlet property="autorLabel" destination="yD3-L7-fNa" id="366-4Y-8Ml"/>
+                        <outlet property="cancelButton" destination="JhF-Gk-0xS" id="e3x-zy-81m"/>
                         <outlet property="imageView" destination="AiF-WX-uEN" id="7Lf-JA-D30"/>
                         <outlet property="linkLabel" destination="zl1-wO-p62" id="Qud-gY-SVA"/>
+                        <outlet property="saveButton" destination="m94-bI-sik" id="fZq-vp-zMN"/>
                         <outlet property="tagsLabel" destination="ek4-Bh-Y8q" id="Zxz-Od-Qze"/>
                         <outlet property="titleLabel" destination="Dcn-Yf-hbK" id="l3u-5a-cxv"/>
                     </connections>
