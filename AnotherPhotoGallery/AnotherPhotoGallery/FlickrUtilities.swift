@@ -44,7 +44,6 @@ class Flickr {
             
             do {
                 resultsDictionary = try NSJSONSerialization.JSONObjectWithData(fixedData, options: NSJSONReadingOptions.AllowFragments) as? NSDictionary
-                print(resultsDictionary)
             }
             catch {
                 completion(results: nil, error: error)
