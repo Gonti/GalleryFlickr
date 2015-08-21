@@ -6,11 +6,11 @@
 //  Copyright © 2015 Tomasz Gontarz. All rights reserved.
 //
 
+
+import SafariServices
 import UIKit
 
-import UIKit
-
-class FlickrPhotoDetailsViewController: UIViewController {
+class FlickrPhotoDetailsViewController: UIViewController, SFSafariViewControllerDelegate {
     
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var saveButton: UIBarButtonItem!
@@ -48,6 +48,25 @@ class FlickrPhotoDetailsViewController: UIViewController {
             })
         }
     }
+    
+    func showInSafari() {
+    
+        if let urlString = photoData?.link, url = NSURL(string: urlString) {
+            let safariViewController = SFSafariViewController(URL: url, entersReaderIfAvailable: true)
+            safariViewController.delegate = self
+            presentViewController(safariViewController, animated: true, completion: nil)
+        }
+    }
+    
+    func safariViewControllerDidFinish(controller: SFSafariViewController) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    @IBAction func showInSafariAction(sender: UIButton) {
+        showInSafari()
+    }
+    
+    // MARK: - Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if  sender === cancelButton {

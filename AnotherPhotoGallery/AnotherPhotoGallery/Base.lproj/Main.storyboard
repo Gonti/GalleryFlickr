@@ -246,11 +246,20 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="O5f-aY-0de">
+                        <nil key="title"/>
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="JhF-Gk-0xS">
                             <connections>
                                 <segue destination="f2I-AT-uQU" kind="unwind" unwindAction="unwindToGalery:" id="Y8D-xd-Msn"/>
                             </connections>
                         </barButtonItem>
+                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="uab-Rg-Hpf">
+                            <rect key="frame" x="180" y="7" width="240" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="Show in Safari"/>
+                            <connections>
+                                <action selector="showInSafariAction:" destination="332-uf-ruk" eventType="touchUpInside" id="HcE-XW-vcU"/>
+                            </connections>
+                        </button>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="m94-bI-sik">
                             <connections>
                                 <segue destination="f2I-AT-uQU" kind="unwind" unwindAction="unwindToGalery:" id="5l6-5w-0Gq"/>
