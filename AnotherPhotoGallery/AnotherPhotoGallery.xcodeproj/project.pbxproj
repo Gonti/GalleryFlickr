@@ -16,6 +16,7 @@
 		76487D561B8710CF00EA49B7 /* FlickrGalleryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76487D551B8710CF00EA49B7 /* FlickrGalleryCollectionViewController.swift */; };
 		76487D581B8714BD00EA49B7 /* FlickrUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76487D571B8714BD00EA49B7 /* FlickrUtilities.swift */; };
 		76487D5A1B872A7C00EA49B7 /* FlickrGalleryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76487D591B872A7C00EA49B7 /* FlickrGalleryCollectionViewCell.swift */; };
+		76487D5C1B8733A000EA49B7 /* FlickrPhotoDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76487D5B1B8733A000EA49B7 /* FlickrPhotoDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,7 @@
 		76487D551B8710CF00EA49B7 /* FlickrGalleryCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickrGalleryCollectionViewController.swift; sourceTree = "<group>"; };
 		76487D571B8714BD00EA49B7 /* FlickrUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickrUtilities.swift; sourceTree = "<group>"; };
 		76487D591B872A7C00EA49B7 /* FlickrGalleryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickrGalleryCollectionViewCell.swift; sourceTree = "<group>"; };
+		76487D5B1B8733A000EA49B7 /* FlickrPhotoDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickrPhotoDetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 				76487D391B8700F700EA49B7 /* Info.plist */,
 				76487D551B8710CF00EA49B7 /* FlickrGalleryCollectionViewController.swift */,
 				76487D591B872A7C00EA49B7 /* FlickrGalleryCollectionViewCell.swift */,
+				76487D5B1B8733A000EA49B7 /* FlickrPhotoDetailsViewController.swift */,
 			);
 			path = AnotherPhotoGallery;
 			sourceTree = "<group>";
@@ -210,6 +213,7 @@
 				76487D581B8714BD00EA49B7 /* FlickrUtilities.swift in Sources */,
 				76487D521B870B7200EA49B7 /* FlickrDataModel.swift in Sources */,
 				76487D2E1B8700F700EA49B7 /* AppDelegate.swift in Sources */,
+				76487D5C1B8733A000EA49B7 /* FlickrPhotoDetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
