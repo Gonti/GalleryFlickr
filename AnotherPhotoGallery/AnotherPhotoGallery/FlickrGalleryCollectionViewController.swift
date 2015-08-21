@@ -8,87 +8,101 @@
 
 import UIKit
 
-private let reuseIdentifier = "Cell"
-
-class FlickrGalleryCollectionViewController: UICollectionViewController {
-
+class FlickrPhotosCollectionViewController: UICollectionViewController {
+    
+    private let reuseIdentifier = "FlickrCell"
+    
+    private var results = [FlickrResults]()
+    private let flickr = Flickr()
+    
+    private let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
+    
+    @IBOutlet weak var appendMorePhotosButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
-        self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
-        // Do any additional setup after loading the view.
+        displayPhotos()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    func displayPhotos() {
+        appendMorePhotosButton.enabled = false
+        showIdicator()
+        flickr.requestFlickr { results, error in
+            self.appendMorePhotosButton.enabled = true
+            if error != nil {
+                print("Error: \(error!)")
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.hideIndictaor()
+                    self.showConnectionAlert()
+                })
+                return
+            }
+            
+            if let results = results {
+                self.results.append(results)
+                self.collectionView?.reloadData()
+            }
+            self.hideIndictaor()
+        }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
+    
+    func showConnectionAlert() {
+        let alertController = UIAlertController(title: "Error", message: "Connection Error", preferredStyle: .Alert)
+        let cancelAction = UIAlertAction(title: "OK", style: .Cancel) { (action) in }
+        alertController.addAction(cancelAction)
+        self.presentViewController(alertController, animated: true) { }
     }
-    */
+    
+    func photoForIndexPath(indexPath: NSIndexPath) -> FlickrPhoto {
+        return results[indexPath.section].results[indexPath.row]
+    }
+    
+    func showIdicator() {
+        view.addSubview(activityIndicator)
+        activityIndicator.frame = view.bounds
+        activityIndicator.startAnimating()
+    }
+    
+    func hideIndictaor() {
+        activityIndicator.removeFromSuperview()
+    }
+    
+    @IBAction func appendPhotos(sender: UIButton) {
+        displayPhotos()
+    }
+    
+}
 
-    // MARK: UICollectionViewDataSource
-
+extension FlickrPhotosCollectionViewController {
+    
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return results.count
     }
-
-
+    
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        return 0
+        return results[section].results.count
     }
-
+    
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath)
-    
-        // Configure the cell
-    
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! FlickrGalleryCollectionViewCell
+        let flickrPhoto = photoForIndexPath(indexPath)
+        cell.photoView.image = flickrPhoto.thumbnail
+        
         return cell
     }
+}
 
-    // MARK: UICollectionViewDelegate
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(collectionView: UICollectionView, shouldHighlightItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
+extension FlickrPhotosCollectionViewController : UICollectionViewDelegateFlowLayout {
+    func collectionView(collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+            
+            let flickrPhoto =  photoForIndexPath(indexPath)
+            if var size = flickrPhoto.thumbnail?.size {
+                size.width = size.width / 3
+                size.height = size.height / 3
+                return size
+            }
+            return CGSize(width: 100, height: 100)
     }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(collectionView: UICollectionView, shouldShowMenuForItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(collectionView: UICollectionView, canPerformAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) -> Bool {
-        return false
-    }
-
-    override func collectionView(collectionView: UICollectionView, performAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) {
-    
-    }
-    */
-
 }

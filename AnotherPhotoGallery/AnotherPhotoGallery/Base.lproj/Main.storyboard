@@ -19,7 +19,7 @@
                             <inset key="sectionInset" minX="10" minY="25" maxX="10" maxY="25"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FlickrCell" id="l3V-TI-nVh" customClass="FlickrPhotoCollectionViewCell" customModule="AnotherPhotoGallery" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FlickrCell" id="l3V-TI-nVh" customClass="FlickrGalleryCollectionViewCell" customModule="AnotherPhotoGallery" customModuleProvider="target">
                                 <rect key="frame" x="10" y="89" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -40,7 +40,7 @@
                                     <constraint firstAttribute="trailing" secondItem="3D9-wJ-acR" secondAttribute="trailing" constant="3" id="qgx-bK-mup"/>
                                 </constraints>
                                 <connections>
-                                    <outlet property="imageView" destination="3D9-wJ-acR" id="Onf-wa-6hM"/>
+                                    <outlet property="photoView" destination="3D9-wJ-acR" id="NCl-Rf-C5g"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -52,14 +52,17 @@
                     <navigationItem key="navigationItem" id="9iH-9K-58a">
                         <nil key="title"/>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="EIR-Ug-iez">
-                            <rect key="frame" x="180" y="7" width="240" height="30"/>
+                            <rect key="frame" x="257" y="7" width="86" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal" title="Get more!"/>
                             <connections>
-                                <action selector="refreshPhotos:" destination="1B5-kP-HcB" eventType="touchUpInside" id="Zmq-s2-bEN"/>
+                                <action selector="appendPhotos:" destination="1B5-kP-HcB" eventType="touchUpInside" id="PPI-gq-cfl"/>
                             </connections>
                         </button>
                     </navigationItem>
+                    <connections>
+                        <outlet property="appendMorePhotosButton" destination="EIR-Ug-iez" id="X04-QN-0Sc"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WNy-ls-pnh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
