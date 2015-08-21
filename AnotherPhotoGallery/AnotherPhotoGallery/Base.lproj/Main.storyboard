@@ -53,17 +53,29 @@
                     </collectionView>
                     <navigationItem key="navigationItem" id="9iH-9K-58a">
                         <nil key="title"/>
-                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="EIR-Ug-iez">
-                            <rect key="frame" x="257" y="7" width="86" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" title="Get more!"/>
+                        <barButtonItem key="leftBarButtonItem" title="Show images!" id="fGM-tk-BQX">
                             <connections>
-                                <action selector="appendMorePhotos:" destination="1B5-kP-HcB" eventType="touchUpInside" id="WSD-Rd-sfP"/>
+                                <action selector="appendMorePhotos:" destination="1B5-kP-HcB" id="Rcc-sD-jhr"/>
                             </connections>
-                        </button>
+                        </barButtonItem>
+                        <textField key="titleView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search for tag..." minimumFontSize="17" id="LAz-D3-gKh">
+                            <rect key="frame" x="180" y="7" width="240" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="1B5-kP-HcB" id="zUG-a1-v8w"/>
+                            </connections>
+                        </textField>
+                        <barButtonItem key="rightBarButtonItem" title="Clear Gallery" id="cvr-hY-xxk">
+                            <connections>
+                                <action selector="clearGallery:" destination="1B5-kP-HcB" id="SyQ-Uf-Opq"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="appendMorePhotosButton" destination="EIR-Ug-iez" id="eoI-rr-ggo"/>
+                        <outlet property="appendMorePhotosButton" destination="fGM-tk-BQX" id="W6C-NC-zTE"/>
+                        <outlet property="searchTagsTextField" destination="LAz-D3-gKh" id="r3Z-7j-6fJ"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WNy-ls-pnh" userLabel="First Responder" sceneMemberID="firstResponder"/>

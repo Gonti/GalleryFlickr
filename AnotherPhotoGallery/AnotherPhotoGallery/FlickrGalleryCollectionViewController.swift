@@ -18,7 +18,9 @@ class FlickrGalleryCollectionViewController: UICollectionViewController {
     
     private let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
     
-    @IBOutlet weak var appendMorePhotosButton: UIButton!
+
+    @IBOutlet weak var appendMorePhotosButton: UIBarButtonItem!
+    @IBOutlet weak var searchTagsTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,9 +29,11 @@ class FlickrGalleryCollectionViewController: UICollectionViewController {
     
     func displayPhotos() {
         appendMorePhotosButton.enabled = false
+        searchTagsTextField.resignFirstResponder()
+        searchTagsTextField.userInteractionEnabled = false
+        
         showIdicator()
         flickr.requestFlickr { results, error in
-            self.appendMorePhotosButton.enabled = true
             if error != nil {
                 print("Error: \(error!)")
                 dispatch_async(dispatch_get_main_queue(), {
@@ -43,6 +47,8 @@ class FlickrGalleryCollectionViewController: UICollectionViewController {
                 self.results.append(results)
                 self.collectionView?.reloadData()
             }
+            self.appendMorePhotosButton.enabled = true
+            self.searchTagsTextField.userInteractionEnabled = true
             self.hideIndictaor()
         }
     }
@@ -68,10 +74,14 @@ class FlickrGalleryCollectionViewController: UICollectionViewController {
         activityIndicator.removeFromSuperview()
     }
     
-    @IBAction func appendMorePhotos(sender: UIButton) {
+    @IBAction func appendMorePhotos(sender: UIBarButtonItem) {
         displayPhotos()
     }
     
+    @IBAction func clearGallery(sender: UIBarButtonItem) {
+        results = [FlickrResults]()
+        collectionView?.reloadData()
+    }
     @IBAction func unwindToGalery(sender: UIStoryboardSegue) {
     }
     
@@ -126,3 +136,41 @@ extension FlickrGalleryCollectionViewController : UICollectionViewDelegateFlowLa
             return CGSize(width: 100, height: 100)
     }
 }
+
+extension FlickrGalleryCollectionViewController : UITextFieldDelegate {
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
+        textField.resignFirstResponder()
+
+        guard let text = textField.text else {
+            return true
+        }
+        
+        if text.isEmpty {
+           return true
+        }
+        
+        var filteredResults = [FlickrResults]()
+        
+        for photos in results {
+            let filteredPhotos = photos.results.filter({ (photo:FlickrPhoto) -> Bool in
+                for tag in photo.tags {
+                    if tag == text {
+                        return true
+                    }
+                }
+                return false
+            })
+            
+            if !filteredPhotos.isEmpty {
+                filteredResults += [FlickrResults(results:filteredPhotos)]
+            }
+        }
+        textField.text = ""
+        self.results = filteredResults
+        self.collectionView?.reloadData()
+
+        return true
+    }
+}
+
