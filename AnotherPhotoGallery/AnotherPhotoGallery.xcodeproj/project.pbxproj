@@ -85,16 +85,13 @@
 		76487D2C1B8700F700EA49B7 /* AnotherPhotoGallery */ = {
 			isa = PBXGroup;
 			children = (
-				76487D2D1B8700F700EA49B7 /* AppDelegate.swift */,
-				76487D311B8700F700EA49B7 /* Main.storyboard */,
-				76487D511B870B7200EA49B7 /* FlickrDataModel.swift */,
-				76487D571B8714BD00EA49B7 /* FlickrUtilities.swift */,
-				76487D341B8700F700EA49B7 /* Assets.xcassets */,
-				76487D361B8700F700EA49B7 /* LaunchScreen.storyboard */,
-				76487D391B8700F700EA49B7 /* Info.plist */,
-				76487D551B8710CF00EA49B7 /* FlickrGalleryCollectionViewController.swift */,
-				76487D591B872A7C00EA49B7 /* FlickrGalleryCollectionViewCell.swift */,
-				76487D5B1B8733A000EA49B7 /* FlickrPhotoDetailsViewController.swift */,
+				76487D5D1B87543A00EA49B7 /* ViewControllers */,
+				76487D611B8754EA00EA49B7 /* Views */,
+				76487D5E1B87545A00EA49B7 /* Models */,
+				76487D5F1B87547700EA49B7 /* Utilities */,
+				76487D601B87548D00EA49B7 /* Assets */,
+				76487D641B87552D00EA49B7 /* Storyboards */,
+				76487D631B87550900EA49B7 /* Supporting Files */,
 			);
 			path = AnotherPhotoGallery;
 			sourceTree = "<group>";
@@ -106,6 +103,65 @@
 				76487D441B8700F800EA49B7 /* Info.plist */,
 			);
 			path = AnotherPhotoGalleryTests;
+			sourceTree = "<group>";
+		};
+		76487D5D1B87543A00EA49B7 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				76487D551B8710CF00EA49B7 /* FlickrGalleryCollectionViewController.swift */,
+				76487D5B1B8733A000EA49B7 /* FlickrPhotoDetailsViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		76487D5E1B87545A00EA49B7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				76487D511B870B7200EA49B7 /* FlickrDataModel.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		76487D5F1B87547700EA49B7 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				76487D571B8714BD00EA49B7 /* FlickrUtilities.swift */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
+		76487D601B87548D00EA49B7 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				76487D341B8700F700EA49B7 /* Assets.xcassets */,
+			);
+			name = Assets;
+			sourceTree = "<group>";
+		};
+		76487D611B8754EA00EA49B7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				76487D591B872A7C00EA49B7 /* FlickrGalleryCollectionViewCell.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		76487D631B87550900EA49B7 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				76487D2D1B8700F700EA49B7 /* AppDelegate.swift */,
+				76487D391B8700F700EA49B7 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		76487D641B87552D00EA49B7 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				76487D311B8700F700EA49B7 /* Main.storyboard */,
+				76487D361B8700F700EA49B7 /* LaunchScreen.storyboard */,
+			);
+			name = Storyboards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
