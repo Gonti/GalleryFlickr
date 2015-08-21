@@ -17,24 +17,33 @@ class FlickrPhotoDetailsViewController: UIViewController {
     @IBOutlet weak var autorLabel: UILabel!
     @IBOutlet weak var autorIdLabel: UILabel!
     @IBOutlet weak var linkLabel: UILabel!
+    @IBOutlet weak var tagsLabel: UILabel!
     
     var photoData:FlickrPhoto?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
-        // Do any additional setup after loading the view.
     }
     
     func setupViews() {
-        if let thumbnail = photoData?.thumbnail {
+        
+        guard let data = photoData else {
+            return
+        }
+        
+        if let thumbnail = data.thumbnail {
             imageView.image = thumbnail
         }
-        titleLabel.text = photoData?.title
-        autorIdLabel.text = photoData?.autorId
-        autorLabel.text = photoData?.autor
-        linkLabel.text = photoData?.link
-        view.layoutIfNeeded()
+        titleLabel.text = data.title
+        autorIdLabel.text = data.autorId
+        autorLabel.text = data.autor
+        linkLabel.text = data.link
+        if !data.tags.isEmpty {
+            tagsLabel.text = data.tags.reduce("", combine: {
+                $0!.isEmpty ? $0! + $1 : $0! + "\n" + $1
+            })
+        }
     }
     
 }
